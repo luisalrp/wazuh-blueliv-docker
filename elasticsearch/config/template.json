@@ -1,0 +1,94 @@
+{
+    "template": "blueliv-*",
+    "settings" : {
+        "index.refresh_interval": "5s"
+    },
+    "mappings": {
+        "_default_": {
+            "dynamic_templates": [
+                {
+                    "message_field": {
+                      "mapping": {
+                        "index": "analyzed",
+                        "omit_norms": true,
+                        "type": "string"
+                      },
+                      "match_mapping_type": "string",
+                      "match": "message"
+                    }
+                  },
+                  {
+                    "string_fields": {
+                      "mapping": {
+                        "index": "analyzed",
+                        "omit_norms": true,
+                        "type": "string",
+                        "fields": {
+                          "raw": {
+                            "ignore_above": 256,
+                            "index": "not_analyzed",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "match_mapping_type": "string",
+                      "match": "*"
+                    }
+                  }
+             ],
+             "_all": {
+                 "omit_norms": true,
+                 "enabled": true
+             },
+             "properties" : {
+               "location": {
+                    "type": "geo_point"
+                },
+                "lastSeenAt": {
+                  "type": "date",
+                  "format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                },
+                "firstSeenAt": {
+                  "type": "date",
+                  "format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                },
+                "updatedAt": {
+                  "type": "date",
+                  "format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                },
+                "@version": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                }
+            }
+        },
+        "blueliv-attacks":{
+            "properties":{
+                "firstEvent": {
+                    "type": "date",
+                    "format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                },
+                "lastEvent": {
+                    "type": "date",
+                    "format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                },
+                "source":{
+                    "type": "object",
+                    "properties":{
+                        "ip":{
+                          "type": "ip"
+                        }
+                    }
+                }
+            }
+        },
+        "blueliv-malwares":{
+            "properties":{
+                "analyzedAt": {
+                    "type": "date",
+                    "format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                }
+            }
+        }
+    }
+}
