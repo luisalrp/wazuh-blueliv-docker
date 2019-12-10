@@ -1,15 +1,15 @@
 
 # Wazuh - Filebeat configuration file
 filebeat.modules:
-  - module: wazuh
+  - module: blueliv
     alerts:
       enabled: true
     archives:
       enabled: false
 
 setup.template.json.enabled: true
-setup.template.json.path: '/etc/filebeat/wazuh-template.json'
-setup.template.json.name: 'wazuh'
+setup.template.json.path: '/etc/filebeat/blueliv-template.json'
+setup.template.json.name: 'blueliv'
 setup.template.overwrite: true
 setup.ilm.enabled: false
 

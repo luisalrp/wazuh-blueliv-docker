@@ -65,8 +65,10 @@ env2yaml /usr/share/logstash/config/logstash.yml
 
 export LS_JAVA_OPTS="-Dls.cgroup.cpuacct.path.override=/ -Dls.cgroup.cpu.path.override=/ $LS_JAVA_OPTS"
 #export LS_JAVA_OPTS="-Dls.cgroup.cpuacct.path.override=/ -Dls.cgroup.cpu.path.override=/ -Xms108m=/ -Xmx108m=/ $LS_JAVA_OPTS"
+#/usr/share/logstash/pipeline/logstash-input-blueliv-1.1.0.gem
 
-logstash-plugin install logstash−input−blueliv
+#logstash-plugin install logstash−input−blueliv
+logstash-plugin install /usr/share/logstash/pipeline/logstash-input-blueliv-1.1.0.gem
 
 if [[ -z $1 ]] || [[ ${1:0:1} == '-' ]] ; then
   exec logstash "$@"
